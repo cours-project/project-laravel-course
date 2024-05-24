@@ -13,7 +13,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface{
         return $this->model->paginate($limit);
     }
     public function getAllUsers(){
-        return $this->model->select(['name','email','group_id','created_at']);
+        return $this->model->select(['name','email','group_id','created_at','id']);
         
     }
     public function setPassword($password,$id){
@@ -25,6 +25,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface{
             return Hash::check($password,$hashPassword);
         }
     }
+
 
 }
 

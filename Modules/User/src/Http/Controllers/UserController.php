@@ -27,8 +27,8 @@ class UserController extends Controller{
        
      
         return DataTables::of($users)
-        ->addColumn('edit', function() {
-            return '<a class = "btn btn-warning">Edit</a>';
+        ->addColumn('edit', function($user) {
+            return '<a href= "'.route('admin.user.edit',$user).'" class = "btn btn-warning">Edit</a>';
         })
         ->addColumn('delete', function() {
             return '<a class = "btn btn-danger">Delete</a>';
@@ -56,4 +56,31 @@ class UserController extends Controller{
         toastr()->success(__('user::message.success'));
         return redirect()->route('admin.user.index')->with('msg','Thêm thành công');
     }
+
+    
+    public function edit($id){
+        $user = $this->userRepository->find($id);
+        if(!$user){
+            abort(404);
+        }
+        $pageTitle = 'Chỉnh sửa thông tin';
+
+        return view('user::edit',compact('user','pageTitle'));
+        }
+    
+        public function update(UserRequest $request,$id){
+            
+            $data = $request->except('_token','password');
+            if($request->password){
+                $data['password'] = Hash::make($request->password);
+            }
+            
+            $status = $this->userRepository->update($id,$data);
+            if($status){
+                toastr()->success(__('user::message.update.success'));
+            }
+
+        return redirect()->route('admin.user.index');
+
+        }
 }
