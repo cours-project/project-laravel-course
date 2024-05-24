@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\Categories as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Categories extends Model
+class Category extends Model
 {
     use HasFactory;
     protected $guarded = [];

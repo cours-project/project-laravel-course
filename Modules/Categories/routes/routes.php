@@ -1,8 +1,9 @@
 <?php 
 use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace' => 'Modules\Categories\src\Http\Controllers','middleware'=>'web'], function(){
     Route::prefix('admin')->name('admin.')->group(function(){
-        Route::prefix('categories')->name('categories.')->group(function(){
+        Route::prefix('category')->name('category.')->group(function(){
             Route::get('/','CategoriesController@index')->name('index');
 
             Route::get('/data','CategoriesController@data')->name('data');
