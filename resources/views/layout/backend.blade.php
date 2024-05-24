@@ -104,6 +104,9 @@
   <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <!-- Bootstrap core JavaScript-->
     
+    {{-- Swallet --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->

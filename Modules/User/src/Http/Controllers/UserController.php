@@ -30,8 +30,8 @@ class UserController extends Controller{
         ->addColumn('edit', function($user) {
             return '<a href= "'.route('admin.user.edit',$user).'" class = "btn btn-warning">Edit</a>';
         })
-        ->addColumn('delete', function() {
-            return '<a class = "btn btn-danger">Delete</a>';
+        ->addColumn('delete', function($user) {
+            return '<a href= "'.route('admin.user.delete',$user).'" class = "btn btn-danger delete">Delete</a>';
         })
         ->editColumn('created_at', function($user) {
             return Carbon::parse($user->created_at)->format('d/m/Y H:i:s');
@@ -82,5 +82,13 @@ class UserController extends Controller{
 
         return redirect()->route('admin.user.index');
 
+        }
+
+        public function delete($id){
+           $status = $this->userRepository->delete($id);
+            if($status){
+                toastr()->success(__('user::message.delete.success'));
+            }
+        return redirect()->route('admin.user.index');
         }
 }

@@ -1,10 +1,10 @@
 <?php
-namespace Modules\{module}\src\Http\Controllers;
+namespace Modules\Categories\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class {module}Controller extends Controller{
-     protected $userRepository;
+class CategoriesController extends Controller{
+    protected $userRepository;
     public function __construct(UserRepository $userRepository) {
         $this->userRepository = $userRepository;
     }
@@ -21,7 +21,7 @@ class {module}Controller extends Controller{
         
     }
 
-    // public function store({module}Request $request){
+    // public function store(UserRequest $request){
 
     // }
 
@@ -30,7 +30,7 @@ class {module}Controller extends Controller{
 
     }
 
-    // public function update({module}Request $request,$id){
+    // public function update(UserRequest $request,$id){
 
     // }
 
@@ -39,6 +39,3 @@ class {module}Controller extends Controller{
     }
 }
   
-
-  
-}
