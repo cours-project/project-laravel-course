@@ -97,26 +97,64 @@ use Illuminate\Support\Facades\Route;');
                 $ControllerFoder = base_path('modules/'.$name.'/src/Http/Controllers');
             if(!File::exists($ControllerFoder)){
                 File::makeDirectory($ControllerFoder,0755,true,true);
-            }
+
+                
+                   //tao controller file
+            $controllerFile = base_path('modules/'.$name.'/src/Http/Controllers/'.$name.'Controller.php');
+            if(!File::exists($controllerFile)){
+            $controllerFileContent = file_get_contents(app_path('Console/Commands/Templates/Controller.txt'));
+            $controllerFileContent = str_replace('{module}',$name,$controllerFileContent);
+
+            File::put($controllerFile,$controllerFileContent);
+            }}
+
             $MiddlewaresFoder = base_path('modules/'.$name.'/src/Http/Middlewares');
             if(!File::exists($MiddlewaresFoder)){
                 File::makeDirectory($MiddlewaresFoder,0755,true,true);
             }
 
             }
+
+
+           
             $modelFoder = base_path('modules/'.$name.'/src/Models');
             if(!File::exists($modelFoder)){
                 File::makeDirectory($modelFoder,0755,true,true);
-            }
-
-
-            //models
-            $modelFoder = base_path('modules/'.$name.'/src/Models');
-            if(!File::exists($modelFoder)){
-                File::makeDirectory($modelFoder,0755,true,true);
-            }
-
+                   //tao models file
             
+           $modelFile = base_path('modules/'.$name.'/src/Models/'.$name.'.php');
+           
+            if(!File::exists($modelFile)){
+            $modelFileContent = file_get_contents(app_path('Console/Commands/Templates/Model.txt'));
+            $modelFileContent = str_replace('{module}',$name,$modelFileContent);
+            File::put($modelFile,$modelFileContent);
+            }}
+
+
+            //repository
+            $repositoryFoder = base_path('modules/'.$name.'/src/Repositories');
+            if(!File::exists($repositoryFoder)){
+                File::makeDirectory($repositoryFoder,0755,true,true);
+
+                   //tao repository file
+            $repositoryFile = base_path('modules/'.$name.'/src/Repositories/'.$name.'Repository.php');
+            if(!File::exists($repositoryFile)){
+            $repositoryFileContent = file_get_contents(app_path('Console/Commands/Templates/ModuleRepository.txt'));
+            $repositoryFileContent = str_replace('{module}',$name,$repositoryFileContent);
+
+            File::put($repositoryFile,$repositoryFileContent);
+            }
+
+
+            $repositoryInterfaceFile = base_path('modules/'.$name.'/src/Repositories/'.$name.'RepositoryInterface.php');
+            if(!File::exists($repositoryInterfaceFile)){
+            $repositoryInterfaceFileContent = file_get_contents(app_path('Console/Commands/Templates/ModuleRepositoryInterface.txt'));
+            $repositoryInterfaceFileContent = str_replace('{module}',$name,$repositoryInterfaceFileContent);
+            
+            File::put($repositoryInterfaceFile,$repositoryInterfaceFileContent);
+            }
+
+            }
 
 
 
