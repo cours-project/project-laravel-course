@@ -32,9 +32,9 @@
          <div class="mb-3">
             <label for="">Cha</label>
             <select name="parent_id" id="" class="form-control {{$errors->has('parent_id')?'is-invalid':''}}">
-               <option value="">None</option>
-               <option value="1">Noasasfne</option>
-
+               <option value="0">None</option>
+               {{ getCategories($categories) }}
+               
             </select>
             @error('parent_id')
             <div class="invalid-feedback">

@@ -1,13 +1,13 @@
 @extends('layout.backend')
 @section('content')
-<form action="{{ route('admin.category.update',$categories->id) }}" method="POST">
+<form action="{{ route('admin.category.update',$getCataId->id) }}" method="POST">
    @csrf
    <div class="row">
       
       <div class="col-6">
          <div class="mb-3">
             <label for="">Tên</label>
-            <input type="text" name="name" class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Tên..." value="{{ old('name') ?? $categories->name }}">
+            <input type="text" name="name" class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Tên..." value="{{ old('name') ?? $getCataId->name }}">
             @error('name')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -31,9 +31,10 @@
       <div class="col-6">
          <div class="mb-3">
             <label for="">Cha</label>
-            <select name="parent_id" id="" class="form-control {{$errors->has('parent_id')?'is-invalid':''}}">
-               <option value="">Chon nhom</option>
-               <option value="1">Admin</option>
+            <select name="parent_id" id="{{ $getCataId->id }}" class="form-control {{$errors->has('parent_id')?'is-invalid':''}}">
+               <option value="0">none</option>
+               {{ getCategories($allCata) }}
+               
             </select>
             @error('parent_id')
             <div class="invalid-feedback">
