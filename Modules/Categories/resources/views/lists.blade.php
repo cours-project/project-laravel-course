@@ -58,6 +58,7 @@ $(document).ready(function () {
             $('#myTable').DataTable({
                 processing: true,
                 serverSide: true,
+                pageLength: 2,
                 ajax: "{{ route('admin.category.data') }}",
                 columns: [
         { data: 'name' },

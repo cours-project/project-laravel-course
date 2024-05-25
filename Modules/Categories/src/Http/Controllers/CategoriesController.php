@@ -45,22 +45,7 @@ class CategoriesController extends Controller{
     public function data()
     {
         $categories = $this->categoriesRepository->getCategories();
-
         $categories = DataTables::of($categories)
-        // ->addColumn('edit', function ($category) {
-        //     return '<a href="'.route('admin.categories.edit', $category).'" class="btn btn-warning">Sửa</a>';
-        // })
-        // ->addColumn('delete', function ($category) {
-        //     return '<a href="'.route('admin.categories.delete', $category).'" class="btn btn-danger delete-action">Xóa</a>';
-        // })
-        // ->addColumn('link', function ($category) {
-        //     return '<a href="" class="btn btn-primary">Xem</a>';
-        // })
-        // ->editColumn('created_at', function ($category) {
-        //     return Carbon::parse($category->created_at)->format('d/m/Y H:i:s');
-        // })
-
-        // ->rawColumns(['edit', 'delete', 'link'])
             ->toArray();
 
         $categories['data'] = $this->getCategoriesTable($categories['data']);

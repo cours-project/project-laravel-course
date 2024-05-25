@@ -12,11 +12,11 @@ class Category extends Model
     use HasFactory;
     protected $guarded = [];
 
-        public function children(){
-        return $this->hasMany(Category::class , 'parent_id');
-        }
-        public function subCategories(){
-            return $this->children()->with('subCategories');
-        }
+    public function children(){
+         return $this->hasMany(Category::class , 'parent_id');
+    }
+    public function subCategories(){
+        return $this->children()->with('subCategories');
+    }
         
 }
