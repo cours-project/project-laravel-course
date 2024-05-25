@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\Courses as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Courses extends Model
+class Course extends Model
 {
     use HasFactory;
     protected $guarded = [];
