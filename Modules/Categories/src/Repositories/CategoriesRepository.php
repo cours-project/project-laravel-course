@@ -9,7 +9,8 @@ class CategoriesRepository extends BaseRepository implements CategoriesRepositor
         return Category::class;
     }
     public function getCategories(){
-        return $this->model->with('subCategories')->where('parent_id',0)->select(['name','slug','parent_id','created_at','id'])->latest();
+        return $this->model->with('subCategories')->where('parent_id',0)
+        ->select(['name','slug','parent_id','created_at','id'])->latest();
     }
 }
 

@@ -44,17 +44,6 @@
 
 
 $(document).ready(function () {
-            // $('#dataTable').DataTable({
-            //     processing: true,
-            //     serverSide: true,
-            //     ajax: "{{ route('admin.user.data') }}",
-            //     columns: [
-            //         {"data": "name"},
-            //         {"data": "email"},
-            //         {"data": "group_id"},
-            //         {"data": "created_at"},
-            //     ]
-            // });
             $('#myTable').DataTable({
                 processing: true,
                 serverSide: true,

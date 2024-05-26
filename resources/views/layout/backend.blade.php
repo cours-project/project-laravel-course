@@ -115,7 +115,16 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('backend/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('backend/js/custom.js') }}"></script>
-    
+
+    {{-- CKeditor --}}
+    <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
+
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+
+    <script>
+         $('#lfm').filemanager('image');
+    </script>
+
     @yield('script')
 
 </body>
