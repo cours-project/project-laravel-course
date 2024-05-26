@@ -85,7 +85,7 @@ class CoursesController extends Controller{
                 toastr()->success(__('courses::message.update.success'));
             }
 
-        return redirect()->route('admin.courses.index');
+        return redirect()->route('admin.course.index');
 
         }
 
@@ -94,7 +94,7 @@ class CoursesController extends Controller{
             if($status){
                 toastr()->success(__('courses::message.delete.success'));
             }
-        return redirect()->route('admin.courses.index');
+        return redirect()->route('admin.course.index');
         }
   
 
