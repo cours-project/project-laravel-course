@@ -21,7 +21,7 @@ class CoursesRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route()->course;
+        $id = $this->route()->id;
 
         $uniqueRule = 'unique:courses,code';
 

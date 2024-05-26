@@ -124,6 +124,7 @@
     <script>
          $('#lfm').filemanager('image');
     </script>
+    @yield('style')
 
     @yield('script')
 

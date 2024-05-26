@@ -161,16 +161,12 @@
                 <div class="mb-3">
                     <label for="">Chuyên mục</label>
                     <div class="list-categories">
-                        {{-- {{ getCategoriesCheckbox($categories, old('categories') ?? $categoryIds) }} --}}
-                    </div>
-                    @error('categories')
-                        <div class="invalid-feedback d-block">
-                            {{ $message }}
+                    {{ getCategoriesCheckbox($categories) }}
                         </div>
-                    @enderror
                 </div>
             </div>
 
+            
             <div class="col-12">
                 <div class="mb-3">
                     <div class="row {{ $errors->has('thumbnail') ? 'align-items-center' : 'align-items-end' }}">

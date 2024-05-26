@@ -47,7 +47,7 @@ console.log(1111);
 $('#myTable').DataTable({
     processing: true,
     serverSide: true,
-    pageLength: 2,
+    pageLength: 5,
     ajax: "{{ route('admin.course.data') }}",
     columns: [{
                         data: 'name',

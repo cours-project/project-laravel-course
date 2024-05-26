@@ -149,19 +149,14 @@
                 </div>
             </div>
 
-            {{-- <div class="col-12">
+            <div class="col-12">
                 <div class="mb-3">
                     <label for="">Chuyên mục</label>
                     <div class="list-categories">
-                        {{ getCategoriesCheckbox($categories, old('categories')) }}
-                    </div>
-                    @error('categories')
-                        <div class="invalid-feedback d-block">
-                            {{ $message }}
+                    {{ getCategoriesCheckbox($categories) }}
                         </div>
-                    @enderror
                 </div>
-            </div> --}}
+            </div>
 
             <div class="col-12">
                 <div class="mb-3">
@@ -203,22 +198,23 @@
        
     </form>
 @endsection
-{{-- 
-@section('stylesheets')
-    <style>
-        img {
-            max-width: 100%;
-            height: auto !important;
-        }
 
-        #holder img {
-            width: 100% !important;
-        }
 
-        .list-categories {
-            max-height: 250px;
-            overflow: auto;
+  
+@section('style')
+<style>
+    img {
+        max-width: 100%;
+        height: auto !important;
+    }
 
-        }
-    </style>
-@endsection --}}
+    #holder img {
+        width: 100% !important;
+    }
+
+    .list-categories {
+        max-height: 250px;
+        overflow: auto;
+    }
+</style>
+@endsection
