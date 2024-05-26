@@ -36,6 +36,8 @@
                     <select name="teacher_id" id=""
                         class="form-select {{ $errors->has('teacher_id') ? 'is-invalid' : '' }}">
                         <option value="0">Chọn giảng viên</option>
+                        <option value="1">Van Hung</option>
+
                         {{-- @if ($teacher)
                             @foreach ($teacher as $item)
                                 <option value="{{ $item->id }}"
@@ -147,11 +149,11 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <div class="mb-3">
                     <label for="">Chuyên mục</label>
                     <div class="list-categories">
-                        {{-- {{ getCategoriesCheckbox($categories, old('categories')) }} --}}
+                        {{ getCategoriesCheckbox($categories, old('categories')) }}
                     </div>
                     @error('categories')
                         <div class="invalid-feedback d-block">
@@ -159,7 +161,7 @@
                         </div>
                     @enderror
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-12">
                 <div class="mb-3">

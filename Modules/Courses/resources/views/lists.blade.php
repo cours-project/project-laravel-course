@@ -49,14 +49,29 @@ $('#myTable').DataTable({
     serverSide: true,
     pageLength: 2,
     ajax: "{{ route('admin.course.data') }}",
-//     columns: [
-// { data: 'name' },
-// { data: 'link' },
-// { data: 'parent_id' },
-// { data: 'created_at' },
-// { data: 'edit' },
-// { data: 'delete' }
-// ]
+    columns: [{
+                        data: 'name',
+                    },
+                    {
+                        data: 'price',
+                    },
+                    {
+                        data: 'status',
+                    },
+
+                    {
+                        data: 'created_at',
+                    },
+                    {
+                        data: 'code',
+                    },
+                    {
+                        data: 'edit',
+                    },
+                    {
+                        data: 'delete',
+                    }
+                ]
 })
 });
 </script>

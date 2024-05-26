@@ -4,6 +4,7 @@ use Modules\Courses\src\Http\Requests\CoursesRequest;
 use Modules\Courses\src\Repositories\CoursesRepository;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
@@ -31,7 +32,21 @@ class CoursesController extends Controller{
         ->editColumn('created_at', function($course) {
             return Carbon::parse($course->created_at)->format('d/m/Y H:i:s');
         })
-        ->rawColumns(['edit','delete'])
+        ->editColumn('created_at', function($course) {
+            return Carbon::parse($course->created_at)->format('d/m/Y H:i:s');
+        })
+        ->editColumn('status', function($course) {
+            return $course->status == 1 ? '<span class="badge bg-success">Ra mắt</span>' : '<span class="badge bg-warning">Chưa ra mắt</span>';
+        })
+        ->editColumn('price', function($course) {
+            if($course->sale_price != null){
+                $price= number_format($course->sale_price);
+            }else{
+                $price= number_format($course->price);
+            }
+            return $price;
+        })
+        ->rawColumns(['edit','delete','status'])
         ->toJson();
    
     }
@@ -41,9 +56,10 @@ class CoursesController extends Controller{
         return view('courses::create',compact('pageTitle'));
     }
     public function store(CoursesRequest $request){
-       
+        $course = $request->except('_token');
+        $this->courseRepository->create($course);
         toastr()->success(__('courses::message.success'));
-        return redirect()->route('admin.courses.index')->with('msg','Thêm thành công');
+        return redirect()->route('admin.course.index')->with('msg','Thêm thành công');
     }
 
     
