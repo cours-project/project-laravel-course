@@ -1,6 +1,7 @@
 @extends('layout.backend')
 @section('content')
-    <form action="" method="post">
+    <form action="{{ route('admin.course.store') }}" method="post">
+      @csrf
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
@@ -197,7 +198,7 @@
                 <a href="{{ route('admin.course.index') }}" class="btn btn-danger">Hủy</a>
             </div>
         </div>
-        @csrf
+       
     </form>
 @endsection
 {{-- 

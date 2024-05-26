@@ -42,12 +42,6 @@ class CoursesController extends Controller{
     }
     public function store(CoursesRequest $request){
        
-        $store = $this->courseRepository->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'group_id' => $request->group_id,
-            'password' => Hash::make($request->password),
-        ]);
         toastr()->success(__('courses::message.success'));
         return redirect()->route('admin.courses.index')->with('msg','Thêm thành công');
     }
