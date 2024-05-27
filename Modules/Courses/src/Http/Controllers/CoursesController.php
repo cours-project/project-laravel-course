@@ -123,13 +123,16 @@ class CoursesController extends Controller{
 
         }
 
-        public function delete($id){
+    public function delete($id){
+        $image = $this->courseRepository->find($id)->pluck('image')->first();
+
            CourseCategory::where('course_id',$id)->delete();
            $status = $this->courseRepository->delete($id);
-
+            
             if($status){
-                toastr()->success(__('courses::message.delete.success'));
-            }
+            deleteFileStorage($image);
+        }
+        toastr()->success(__('courses::message.delete.success'));
         return redirect()->route('admin.course.index');
         }
   

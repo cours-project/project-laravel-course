@@ -3,7 +3,7 @@
 {{-- @if (section('msg'))
     <div class="alert alert-success">{{ session('msg') }}</div>
 @endif --}}
-<a href="{{ route('admin.course.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Thêm mới</a>
+<a href="{{ route('admin.teacher.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Thêm mới</a>
 </div>
 <div class="row">
 <div class="card-body">
@@ -11,22 +11,22 @@
         <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
+                    <th>Ảnh</th>
                     <th>Tên</th>
-                    <th>Giá</th>
-                    <th>Trạng thái</th>
+                    <th>Kinh nghiệm</th>
+    
                     <th>Thời gian</th>
-                    <th>Bài giảng</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
+                    <th>Ảnh</th>
                     <th>Tên</th>
-                    <th>Giá</th>
-                    <th>Trạng thái</th>
+                    <th>Kinh nghiệm</th>
+    
                     <th>Thời gian</th>
-                    <th>Bài giảng</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
                 </tr>
@@ -40,29 +40,28 @@
 
 @section('script')
     <script>
+//         $('#dataTable').DataTable({
+//     ajax: '{{ route("admin.user.data") }}',
+// } );
+
 
 $(document).ready(function () {
-console.log(1111);
-$('#myTable').DataTable({
-    processing: true,
-    serverSide: true,
-    pageLength: 5,
-    ajax: "{{ route('admin.course.data') }}",
-    columns: [{
+            $('#myTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.teacher.data') }}",
+                columns:[{
+                        data: 'image',
+                    },
+                    {
                         data: 'name',
                     },
                     {
-                        data: 'price',
-                    },
-                    {
-                        data: 'status',
+                        data: 'exp',
                     },
 
                     {
                         data: 'created_at',
-                    },
-                    {
-                        data: 'code',
                     },
                     {
                         data: 'edit',
@@ -71,8 +70,9 @@ $('#myTable').DataTable({
                         data: 'delete',
                     }
                 ]
-})
-});
-</script>
-
+            });
+            });
+       
+       
+    </script>
 @endsection
