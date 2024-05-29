@@ -8,6 +8,8 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
     public function getModel(){
         return Lessons::class;
     }
+    
+   
 
 }
 

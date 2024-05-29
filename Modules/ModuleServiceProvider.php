@@ -12,11 +12,15 @@ use Modules\Courses\src\Repositories\CoursesRepository;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 use Modules\Dashboard\src\Repositories\DashboardRepository;
 use Modules\Dashboard\src\Repositories\DashboardRepositoryInterface;
+use Modules\Lessons\src\Repositories\LessonsRepository;
+use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
 use Modules\Teacher\src\Repositories\TeacherRepository;
 use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 use Modules\User\src\Repositories\MongoUserRepository;
 use Modules\User\src\Repositories\UserRepository;
 use Modules\User\src\Repositories\UserRepositoryInterface;
+use Modules\Videos\src\Repositories\VideosRepository;
+use Modules\Videos\src\Repositories\VideosRepositoryInterface;
 
 class ModuleServiceProvider extends ServiceProvider{
 
@@ -50,6 +54,14 @@ class ModuleServiceProvider extends ServiceProvider{
              TeacherRepositoryInterface::class,
              TeacherRepository::class
           );
+          $this->app->singleton(
+            LessonsRepositoryInterface::class,
+            LessonsRepository::class
+         );
+         $this->app->singleton(
+            VideosRepositoryInterface::class,
+            VideosRepository::class 
+         );
     }
 
     public function boot(){

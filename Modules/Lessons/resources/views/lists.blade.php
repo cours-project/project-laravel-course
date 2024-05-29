@@ -2,7 +2,7 @@
 @section('content')
     <p>
         <a href="{{ route('admin.course.index') }}" class="btn btn-info text-white">Quay lại khóa học</a>
-        <a href="#" class="btn btn-primary">Thêm mới</a>
+        <a href="{{ route('admin.lesson.create',$id) }}" class="btn btn-primary">Thêm mới</a>
     </p>
     
     <table id="datatable" class="table table-bordered">

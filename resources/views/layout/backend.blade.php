@@ -10,7 +10,10 @@
     <meta name="author" content="">
 
     <title>{{ $pageTitle }}-VH Unicode</title>
+    {{-- Select 2 css --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    
     <!-- Custom fonts for this template-->
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -123,6 +126,11 @@
 
     <script>
          $('#lfm').filemanager('image');
+         $('#lfm-file').filemanager('file');
+         $('#video-lfm').filemanager('video');
+         $('#lfm-document').filemanager('document');
+
+         
     </script>
     @yield('style')
 
