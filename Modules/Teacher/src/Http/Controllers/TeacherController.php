@@ -5,11 +5,12 @@ use App\Http\Controllers\Controller;
 use Modules\Teacher\src\Http\Requests\TeacherRequest;
 use Modules\Teacher\src\Repositories\TeacherRepository;
 use Carbon\Carbon as CarbonCarbon;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 use Yajra\DataTables\Facades\DataTables;
 
 class TeacherController extends Controller{
      protected $teacherRepository;
-    public function __construct(TeacherRepository $teacherRepository) {
+    public function __construct(TeacherRepositoryInterface $teacherRepository) {
         $this->teacherRepository = $teacherRepository;
     }
 

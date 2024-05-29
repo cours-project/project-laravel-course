@@ -4,5 +4,5 @@ use App\Repositories\RepositoryInterface;
 
 
 interface CoursesRepositoryInterface extends RepositoryInterface{
-
+    public function getModel();
 }

@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use File;
+use Illuminate\Support\Facades\File;
+
 class Module extends Command
 {
     /**
@@ -72,13 +73,24 @@ class Module extends Command
             if(!File::exists($routeFoder)){
                 File::makeDirectory($routeFoder,0755,true,true);
 
-                //tao routes file
-            $routeFile = base_path('modules/'.$name.'/routes/routes.php');
+                //tao routes web file
+            $routeFile = base_path('modules/'.$name.'/routes/web.php');
             if(!File::exists($routeFile)){
-                File::put($routeFile,'<?php 
-use Illuminate\Support\Facades\Route;');
+            $modelFileContent = file_get_contents(app_path('Console/Commands/Templates/Route.txt'));
+            $modelFileContent = str_replace('{module}',$name,$modelFileContent);
+            File::put($routeFile,$modelFileContent);
+            }
+
+            //tao routes api file
+              $routeFile = base_path('modules/'.$name.'/routes/api.php');
+            if(!File::exists($routeFile)){
+            $modelFileContent = file_get_contents(app_path('Console/Commands/Templates/Route.txt'));
+            $modelFileContent = str_replace('{module}',$name,$modelFileContent);
+            File::put($routeFile,$modelFileContent);
             }
             }
+
+            
 
             //src
             $srcFoder = base_path('modules/'.$name.'/src');

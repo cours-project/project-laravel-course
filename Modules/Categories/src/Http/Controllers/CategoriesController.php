@@ -8,11 +8,12 @@ use Modules\Categories\src\Models\Category;
 use Modules\Categories\src\Repositories\CategoriesRepository;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
+use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
 use voku\helper\ASCII;
 
 class CategoriesController extends Controller{
     protected $categoriesRepository;
-    public function __construct(CategoriesRepository $categoriesRepository) {
+    public function __construct(CategoriesRepositoryInterface $categoriesRepository) {
         $this->categoriesRepository = $categoriesRepository;
     }
 

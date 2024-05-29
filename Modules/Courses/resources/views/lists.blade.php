@@ -65,6 +65,9 @@ $('#myTable').DataTable({
                         data: 'code',
                     },
                     {
+                        data: 'lesson',
+                    },
+                    {
                         data: 'edit',
                     },
                     {

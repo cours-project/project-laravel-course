@@ -8,6 +8,7 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
     public function getModel(){
         return Course::class;
     }
+    
 }
 
 ?>

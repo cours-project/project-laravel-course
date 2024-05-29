@@ -1,8 +1,22 @@
 <?php
 namespace Modules;
+use Illuminate\Support\Facades\File;
+
+use Illuminate\Support\Facades\Route;
+
 use Illuminate\Support\ServiceProvider;
-use File;
+use Modules\Categories\src\Repositories\CategoriesRepository;
+use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
+use Modules\Courses\src\Models\CourseCategory;
+use Modules\Courses\src\Repositories\CoursesRepository;
+use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
+use Modules\Dashboard\src\Repositories\DashboardRepository;
+use Modules\Dashboard\src\Repositories\DashboardRepositoryInterface;
+use Modules\Teacher\src\Repositories\TeacherRepository;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
+use Modules\User\src\Repositories\MongoUserRepository;
 use Modules\User\src\Repositories\UserRepository;
+use Modules\User\src\Repositories\UserRepositoryInterface;
 
 class ModuleServiceProvider extends ServiceProvider{
 
@@ -13,6 +27,30 @@ class ModuleServiceProvider extends ServiceProvider{
     private $commands = [
       
     ];
+    
+
+    public function bindingsRepository(){
+        $this->app->singleton(
+            UserRepositoryInterface::class,
+            UserRepository::class
+         );
+         $this->app->singleton(
+             CategoriesRepositoryInterface::class,
+             CategoriesRepository::class
+          );
+         $this->app->singleton(
+             CoursesRepositoryInterface::class,
+             CoursesRepository::class
+          );
+          $this->app->singleton(
+             DashboardRepositoryInterface::class,
+             DashboardRepository::class
+          );
+          $this->app->singleton(
+             TeacherRepositoryInterface::class,
+             TeacherRepository::class
+          );
+    }
 
     public function boot(){
     $modules = $this->getModules();
@@ -22,6 +60,8 @@ class ModuleServiceProvider extends ServiceProvider{
             }
        }
     }
+
+
     
     public function getModules(){
         $directories = array_map('basename',File::directories(__DIR__));
@@ -30,10 +70,22 @@ class ModuleServiceProvider extends ServiceProvider{
 
     private function registerModule($moduleName){
         $modulePath = __DIR__ . "/$moduleName";
-    
-        if(File::exists($modulePath."/routes/routes.php")){
-            $this->loadRoutesFrom($modulePath."/routes/routes.php");
+
+      
+        Route::middleware('web')->prefix('admin')->name('admin.')->group(function () use ($modulePath) {
+       
+            if(File::exists($modulePath."/routes/web.php")){
+            $this->loadRoutesFrom($modulePath."/routes/web.php");
         }
+    });
+
+    Route::middleware('api')->prefix('api')->name('api.')->group(function () use ($modulePath) {
+       
+        if(File::exists($modulePath."/routes/api.php")){
+        $this->loadRoutesFrom($modulePath."/routes/api.php");
+    }
+});
+        
             // Toàn bộ file migration của modules sẽ tự động được load
         if (File::exists($modulePath . "/migrations")) {
         $this->loadMigrationsFrom($modulePath . "/migrations");
@@ -80,9 +132,7 @@ class ModuleServiceProvider extends ServiceProvider{
         $this->commands($this->commands);
 
         //repository
-        $this->app->singleton(
-            UserRepository::class
-        );
+       $this->bindingsRepository();
      }
 
 

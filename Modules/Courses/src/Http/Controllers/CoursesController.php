@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 
 
 use App\Http\Controllers\Controller;
+use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 
 class CoursesController extends Controller{
      protected $courseRepository;
      protected $categoryRepository;
-    public function __construct(CoursesRepository $courseRepository , CategoriesRepository $categoryRepository) {
+    public function __construct(CoursesRepositoryInterface $courseRepository , CategoriesRepository $categoryRepository) {
         $this->courseRepository = $courseRepository;
         $this->categoryRepository = $categoryRepository;
     }
@@ -28,14 +29,14 @@ class CoursesController extends Controller{
         $courses = $this->courseRepository->getAll();
         
         return DataTables::of($courses)
+        ->addColumn('lesson', function($course) {
+            return '<a href= "'.route('admin.lesson.index',$course).'" class = "btn btn-primary ">Lesson</a>';
+        })
         ->addColumn('edit', function($course) {
             return '<a href= "'.route('admin.course.edit',$course).'" class = "btn btn-warning">Edit</a>';
         })
         ->addColumn('delete', function($course) {
             return '<a href= "'.route('admin.course.delete',$course).'" class = "btn btn-danger delete">Delete</a>';
-        })
-        ->editColumn('created_at', function($course) {
-            return Carbon::parse($course->created_at)->format('d/m/Y H:i:s');
         })
         ->editColumn('created_at', function($course) {
             return Carbon::parse($course->created_at)->format('d/m/Y H:i:s');
@@ -51,7 +52,7 @@ class CoursesController extends Controller{
             }
             return $price;
         })
-        ->rawColumns(['edit','delete','status'])
+        ->rawColumns(['edit','delete','status','lesson'])
         ->toJson();
    
     }
