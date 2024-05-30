@@ -2,22 +2,35 @@
 namespace Modules\Lessons\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
+use Modules\Documents\src\Repositories\DocumentsRepositoryInterface;
 use Modules\Lessons\src\Http\Requests\LessonRequest;
 use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
 use Modules\Videos\src\Repositories\VideosRepositoryInterface;
+use Yajra\DataTables\Facades\DataTables;
 
 class LessonsController extends Controller{
     
     protected $courseRepository;
     protected $lessonRepository;
     protected $videoRepository;
+    protected $documentRepository;
 
 
-    public function __construct(CoursesRepositoryInterface $courseRepository  , VideosRepositoryInterface $videoRepository , LessonsRepositoryInterface $lessonRepository) {
+
+    public function __construct(
+      CoursesRepositoryInterface $courseRepository  ,
+      VideosRepositoryInterface $videoRepository , 
+      LessonsRepositoryInterface $lessonRepository,
+      DocumentsRepositoryInterface $documentRepository
+  ){
         $this->courseRepository = $courseRepository;
         $this->lessonRepository = $lessonRepository;
         $this->videoRepository = $videoRepository;
+        $this->documentRepository = $documentRepository;
 
     }
 
@@ -27,20 +40,104 @@ class LessonsController extends Controller{
       return view('lessons::lists', compact('pageTitle','id'));
     }
     
-    public function data(){
+    public function data($id){
+      $lessons = $this->lessonRepository->getLessons($id);
+      $lessons = DataTables::of($lessons)->toArray();
+      // dd($lessons);
+      $lessons['data'] = $this->getLessionsTable($lessons['data']);
 
+      return $lessons;
+      
     }
+
+    public function getLessionsTable($lessons, $char = '', &$result = [])
+    {
+      if (!empty($lessons)) {
+      foreach ($lessons as $key => $lesson) {
+      $row = $lesson;
+      $row['name'] = $char . $row['name'];
+      if ($row['parent_id'] == null) {
+          $row['is_trial'] = '';
+          $row['view'] = '';
+          $row['durations'] = '';
+          $row['add'] = '<a href="' . route('admin.lesson.create', $row['course_id']) . '?module=' . $row['id'] . '" class="btn btn-primary btn-sm">Thêm bài</a>';
+          $row['edit'] = '<a href="' . route('admin.lesson.edit', $row['id']) . '" class="btn btn-warning btn-sm">Sửa</a>';
+          $row['delete'] = '<a href="' . route('admin.lesson.delete', $row['id']) . '" class="btn btn-danger btn-sm delete-action">Xóa</a>';
+      } else {
+          $row['is_trial'] = ($row['is_trial'] == 1 ? 'Có' : 'Không');
+          $row['view'] = $row['view'];
+          $row['durations'] = ($row['durations']);
+          $row['add'] = '';
+          $row['edit'] = '<a href="' . route('admin.lesson.edit', $row['id']) . '" class="btn btn-warning btn-sm">Sửa</a>';
+          $row['delete'] = '<a href="' . route('admin.lesson.delete', $row['id']) . '" class="btn btn-danger btn-sm delete-action">Xóa</a>';
+
+      }
+
+      unset($row['sub_lessons']);
+      unset($row['course_id']);
+
+      $result[] = $row;
+      if (!empty($lesson['sub_lessons'])) {
+          $this->getLessionsTable($lesson['sub_lessons'], $char . '|--', $result);
+      }
+      }
+      }
+
+     return $result;
+}
+
+    
 
     public function create($id){
         $pageTitle = "Thêm mới bài giảng";
-
-        return view('lessons::create',compact('pageTitle','id'));
+        $position = $this->lessonRepository->getPosition($id);
+        $lessons = $this->lessonRepository->getAll();
+        return view('lessons::create',compact('pageTitle','id','position','lessons'));
     }
 
-    public function store(LessonRequest $request){
-      $url = $request->video;
-      $result = $this->videoRepository->createVideo(['url' => $url]);
-      dd($result);
+    public function store(LessonRequest $request, $id){
+
+      $video_id = null ;
+      $document_id = null ;
+      $parentId = $request->parent_id == 0 ? null : $request->parent_id;
+
+    
+
+      if($request->video){
+      $video = $request->video;
+      $video_info = getInfoVideo($video);
+      $resultVideo = $this->videoRepository->createVideo(
+        ['url' => $video , 
+        'name' => $video_info['filename'],
+        'size'=> $video_info['playtime_seconds']]);
+      $video_id = $resultVideo->id;
+      }
+
+
+      if($request->document){
+        $resultDoc = getInfoDoc($request->document);
+        $resultDocument = $this->documentRepository->createDocument(['url' => $request->document,'name'=>$resultDoc['nameDoc'], 'size'=> $resultDoc['sizeDoc'] ]);
+        $document_id = $resultDocument->id;
+      }
+
+
+      $this->lessonRepository->create([
+        'name' => $request->name,
+            'slug' => $request->slug,
+            'video_id' => $video_id,
+            'course_id' => $id,
+            'document_id' => $document_id,
+            'parent_id' => $parentId,
+            'is_trial' => $request->is_trial,
+            'position' => $request->position,
+            'durations' => $video_info['playtime_seconds'] ?? 0,
+            'description' => $request->description,
+            'status' => $request->status,
+      ]);
+
+      toastr()->success(__('lessons::messages.create.success'));
+      return redirect()->route('admin.lesson.index',$id);
+
     }
 
 

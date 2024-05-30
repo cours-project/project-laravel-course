@@ -10,8 +10,6 @@
     <meta name="author" content="">
 
     <title>{{ $pageTitle }}-VH Unicode</title>
-    {{-- Select 2 css --}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     
     <!-- Custom fonts for this template-->
@@ -20,6 +18,10 @@
     {{-- DATATABLES --}}
     <title>{{ $pageTitle }} - Unicode Academy</title>
    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+
+    {{-- Select 2 css --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -76,35 +78,13 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
+    
+    {{-- <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-    <!-- Scroll to Top Button-->
-    {{-- <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script>
-     {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-  <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <!-- Bootstrap core JavaScript-->
     
     {{-- Swallet --}}
@@ -112,9 +92,7 @@
 
     <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
+   
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('backend/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('backend/js/custom.js') }}"></script>
@@ -129,8 +107,7 @@
          $('#lfm-file').filemanager('file');
          $('#video-lfm').filemanager('video');
          $('#lfm-document').filemanager('document');
-
-         
+        
     </script>
     @yield('style')
 

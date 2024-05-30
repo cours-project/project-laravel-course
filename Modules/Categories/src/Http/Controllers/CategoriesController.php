@@ -46,9 +46,7 @@ class CategoriesController extends Controller{
     public function data()
     {
         $categories = $this->categoriesRepository->getCategories();
-        $categories = DataTables::of($categories)
-            ->toArray();
-
+        $categories = DataTables::of($categories)->toArray();
         $categories['data'] = $this->getCategoriesTable($categories['data']);
 
         return $categories;

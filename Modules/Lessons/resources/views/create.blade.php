@@ -36,10 +36,10 @@
             <div class="mb-3">
                 <label for="">Nhóm bài giảng</label>
                 <select name="parent_id"
-                    class="form-select select2 {{ $errors->has('parent_id') ? 'is-invalid' : '' }}">
+                    class=" select {{ $errors->has('parent_id') ? 'is-invalid' : '' }}">
                    
                     <option value="0">Trống</option>
-                    <option value="1">sdkji</option>
+                    {{ getLessons($lessons) }}
                    
                 </select>
                 @error('parent_id')
@@ -71,7 +71,7 @@
             <div class="mb-3">
                 <label for="">Sắp xếp</label>
                 <input type="number" class="form-control {{ $errors->has('position') ? 'is-invalid' : '' }}"
-                    name="position" placeholder="Thứ tự..." value="{{old('position')}}" />
+                    name="position" placeholder="Thứ tự..." value="{{old('position') ? old('position') : "$position"}}" />
                 @error('position')
                 <div class="invalid-feedback">
                     {{ $message }}

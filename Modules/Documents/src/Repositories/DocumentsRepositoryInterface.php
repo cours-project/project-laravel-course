@@ -4,5 +4,5 @@ use App\Repositories\RepositoryInterface;
 
 
 interface DocumentsRepositoryInterface extends RepositoryInterface{
-
+    public function createDocument($data);
 }

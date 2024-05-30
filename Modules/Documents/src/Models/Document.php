@@ -7,10 +7,13 @@ use Illuminate\Foundation\Auth\Documents as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Documents extends Model
+class Document extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-
+    protected $attributes = [
+        'size' => 0
+    ];
 }
+

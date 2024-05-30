@@ -5,12 +5,6 @@ if (!function_exists('getCategoriesCheckbox')) {
 function getCategoriesCheckbox($categories,$parent_id = 0,$char=''){
     $id = request()->route()->id;
 
-    // if(old('categories')){
-    //     foreach(old('categories') as $category_id){
-    //         $
-    //     }
-    // }
-
     foreach ($categories as $key => $category) {
         if ($category->parent_id == $parent_id) {
 
