@@ -104,22 +104,22 @@ class CoursesController extends Controller{
         return view('courses::edit',compact('course','pageTitle','categories'));
         }
     
-        public function update(CoursesRequest $request,$id){
+    public function update(CoursesRequest $request,$id){
 
-            $data = $request->except('_token','categories');
-            $status = $this->courseRepository->update($id,$data);
-            if($status){
-                toastr()->success(__('courses::message.update.success'));
-            }
-            CourseCategory::where('course_id',$id)->delete();
-            foreach ($request->categories as $category_id) {
-                CourseCategory::insert([
-                  'category_id' => $category_id,
-                  'course_id' => $id,
-                  'created_at' => Carbon::now(),
-                  'updated_at' => Carbon::now()
-                ]);
-            }
+        $data = $request->except('_token','categories');
+        $status = $this->courseRepository->update($id,$data);
+        if($status){
+            toastr()->success(__('courses::message.update.success'));
+        }
+        CourseCategory::where('course_id',$id)->delete();
+        foreach ($request->categories as $category_id) {
+            CourseCategory::insert([
+                'category_id' => $category_id,
+                'course_id' => $id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
         return redirect()->route('admin.course.index');
 
         }

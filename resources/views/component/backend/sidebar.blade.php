@@ -47,6 +47,11 @@
         'title' =>'Người dùng',
         'name' => 'user'
     ])
+    @include('component.backend.menu_side',
+    [
+        'title' =>'Học viên',
+        'name' => 'student'
+    ])
 
    
 

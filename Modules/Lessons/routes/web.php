@@ -14,7 +14,15 @@ Route::get('/data/{id}',[LessonsController::class , 'data'])->name('data');
 
 Route::get('/edit/{id}',[LessonsController::class , 'edit'])->name('edit');
 
+Route::post('/update/{id}',[LessonsController::class , 'update'])->name('update');
+
 Route::get('/delete/{id}',[LessonsController::class , 'delete'])->name('delete');
+
+Route::get('/sort/{id}',[LessonsController::class , 'sort'])->name('sort');
+
+Route::post('/handlesort/{id}',[LessonsController::class , 'handleSort'])->name('handleSort');
+
+
 
 
 

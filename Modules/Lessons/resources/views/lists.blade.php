@@ -1,8 +1,9 @@
 @extends('layout.backend')
 @section('content')
     <p>
-        <a href="{{ route('admin.course.index') }}" class="btn btn-info text-white">Quay lại khóa học</a>
-        <a href="{{ route('admin.lesson.create',$id) }}" class="btn btn-primary">Thêm mới</a>
+        <a href="{{ route('admin.course.index', $id) }}" class="btn btn-info text-white">Quay lại khóa học</a>
+        <a href="{{ route('admin.lesson.sort' , $id) }}" class="btn btn-success">Sắp xếp</a>
+        <a href="{{ route('admin.lesson.create', $id) }}" class="btn btn-primary">Thêm mới</a>
     </p>
     
     <table id="myTable" class="table table-bordered">
@@ -12,7 +13,7 @@
                 <th>Học thử</th>
                 <th>Lượt xem</th>
                 <th>Thời lượng</th>
-                {{-- <th>Thêm</th> --}}
+                <th>Thêm</th>
                 <th>Sửa</th>
                 <th>Xóa</th>
             </tr>
@@ -23,7 +24,7 @@
                 <th>Học thử</th>
                 <th>Lượt xem</th>
                 <th>Thời lượng</th>
-                {{-- <th>Thêm</th> --}}
+                <th>Thêm</th>
                 <th>Sửa</th>
                 <th>Xóa</th>
             </tr>
@@ -52,9 +53,9 @@
                     {
                         data: 'durations',
                     },
-                    // {
-                    //     data: 'add',
-                    // },
+                    {
+                        data: 'add',
+                    },
                     {
                         data: 'edit',
                     },

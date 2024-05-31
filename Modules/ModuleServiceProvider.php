@@ -16,6 +16,8 @@ use Modules\Documents\src\Repositories\DocumentsRepository;
 use Modules\Documents\src\Repositories\DocumentsRepositoryInterface;
 use Modules\Lessons\src\Repositories\LessonsRepository;
 use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
+use Modules\Students\src\Repositories\StudentsRepository;
+use Modules\Students\src\Repositories\StudentsRepositoryInterface;
 use Modules\Teacher\src\Repositories\TeacherRepository;
 use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 use Modules\User\src\Repositories\MongoUserRepository;
@@ -67,6 +69,10 @@ class ModuleServiceProvider extends ServiceProvider{
          $this->app->singleton(
             DocumentsRepositoryInterface::class,
             DocumentsRepository::class 
+         );
+         $this->app->singleton(
+            StudentsRepositoryInterface::class,
+            StudentsRepository::class 
          );
     }
 

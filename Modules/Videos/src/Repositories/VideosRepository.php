@@ -10,9 +10,12 @@ class VideosRepository extends BaseRepository implements VideosRepositoryInterfa
     }
 
     public function createVideo($data){
-    return $this->model->firstOrCreate($data);
+        return $this->model->firstOrCreate($data);
     }
     
+    public function updateVideo(){
+
+    }
 }
 
 ?>
