@@ -1,8 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Modules\Home\src\Http\Controllers\HomeController;
 
-Route::middleware('auth')->prefix('Home')->name('Home.')->group(function(){
-
-//Route here
- 
- });
+Route::get('/',[HomeController::class, 'index'])->name('index');
