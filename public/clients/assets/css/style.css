@@ -66,7 +66,8 @@ html {
   /* WebKit  */
 }
 
-body {
+body { 
+  
   margin: 0;
   color: var(--paragraph-color);
   font-family: var(--body-font);
@@ -3069,7 +3070,7 @@ ul {
 .single-course-wrap .wrap-details .price-wrap .price {
   color: #0071dc;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 12px;
 }
 .single-course-wrap .wrap-details .date-wrap .time,
 .single-course-wrap .wrap-details .price-wrap .time {

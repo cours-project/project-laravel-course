@@ -19,4 +19,5 @@ class CourseCategory extends Model
     function courses(){
         $this->belongsToMany(Course::class);
     }
+
 }

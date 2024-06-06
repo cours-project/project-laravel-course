@@ -15,7 +15,7 @@ Route::middleware('auth')->prefix('course')->name('course.')->group(function(){
 
             Route::get('/edit/{id}',[CoursesController::class , 'edit'])->name('edit');
 
-            Route::post('/update/{id}',[CoursesController::class , 'uodate'])->name('update');
+            Route::post('/update/{id}',[CoursesController::class , 'update'])->name('update');
 
             Route::get('/delete/{id}',[CoursesController::class , 'delete'])->name('delete');
         });

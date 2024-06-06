@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Lessons as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Courses\src\Models\Course;
+use Modules\Videos\src\Models\Video;
 
 class Lesson extends Model
 {
@@ -21,4 +23,18 @@ class Lesson extends Model
     {
         return $this->children()->orderBy('position', 'asc')->with('subLessons');
     }
+
+    public function video(){
+        return $this->belongsTo(Video::class,'video_id');
+    }
+    public function course()
+    {
+        return $this->belongsTo(
+            Course::class,
+            'course_id','id'
+        )->select('id','name','thumbnail');
+    }
+    
+   
+   
 }

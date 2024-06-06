@@ -38,7 +38,10 @@
                     <select name="teacher_id" id=""
                         class="form-select {{ $errors->has('teacher_id') ? 'is-invalid' : '' }}">
                         <option value="0">Chọn giảng viên</option>
-                        <option value="1">Van Hung</option>
+                        @foreach ($teachers as $teacher)
+                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                        @endforeach
+                        
 
                         {{-- @if ($teacher)
                             @foreach ($teacher as $item)

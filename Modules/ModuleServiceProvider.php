@@ -1,5 +1,7 @@
 <?php
 namespace Modules;
+
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Support\Facades\Route;
@@ -83,6 +85,7 @@ class ModuleServiceProvider extends ServiceProvider{
             $this->registerModule($module);
             }
        }
+       Paginator::useBootstrapFive();
     }
 
 
@@ -101,12 +104,21 @@ class ModuleServiceProvider extends ServiceProvider{
             if(File::exists($modulePath."/routes/web.php")){
             $this->loadRoutesFrom($modulePath."/routes/web.php");
         }
-    });
+        });
+
+        Route::middleware('web')->group(function () use ($modulePath) {
+        if(File::exists($modulePath."/routes/clients/web.php")){
+            $this->loadRoutesFrom($modulePath."/routes/clients/web.php");
+         }
+         });
 
     Route::middleware('api')->prefix('api')->name('api.')->group(function () use ($modulePath) {
        
         if(File::exists($modulePath."/routes/api.php")){
         $this->loadRoutesFrom($modulePath."/routes/api.php");
+    }
+        if(File::exists($modulePath."/routes/clients/api.php")){
+            $this->loadRoutesFrom($modulePath."/routes/clients/api.php");
     }
 });
         

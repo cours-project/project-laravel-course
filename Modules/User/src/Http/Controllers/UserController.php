@@ -55,7 +55,7 @@ class UserController extends Controller{
             'password' => Hash::make($request->password),
         ]);
         toastr()->success(__('user::message.success'));
-        return redirect()->route('admin.user.index')->with('msg','Thêm thành công');
+        return redirect()->route('admin.user.index');
     }
 
     

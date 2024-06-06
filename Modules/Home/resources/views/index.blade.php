@@ -1,4 +1,4 @@
-@extends('layout.cilent')
+@extends('layout.client')
 @section('content')
     <!-- Banner Area Start-->
    @include('home::component.banner')

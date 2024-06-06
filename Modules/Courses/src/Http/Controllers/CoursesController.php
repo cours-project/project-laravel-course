@@ -11,13 +11,20 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 
 class CoursesController extends Controller{
      protected $courseRepository;
      protected $categoryRepository;
-    public function __construct(CoursesRepositoryInterface $courseRepository , CategoriesRepository $categoryRepository) {
+     protected $teacherRepository;
+
+    public function __construct(
+        CoursesRepositoryInterface $courseRepository , 
+        CategoriesRepository $categoryRepository,
+        TeacherRepositoryInterface $teacherRepository) {
         $this->courseRepository = $courseRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->teacherRepository = $teacherRepository;
     }
 
     public function index(){
@@ -26,7 +33,7 @@ class CoursesController extends Controller{
     }
 
     public function data(){
-        $courses = $this->courseRepository->getAll();
+        $courses = $this->courseRepository->getAllCourses();
         
         return DataTables::of($courses)
         ->addColumn('lesson', function($course) {
@@ -60,7 +67,8 @@ class CoursesController extends Controller{
     public function create(){
         $pageTitle = "Thêm khóa học";
         $categories = $this->categoryRepository->getAll();
-        return view('courses::create',compact('pageTitle','categories'));
+        $teacher = $this->teacherRepository->getAll();
+        return view('courses::create',compact('pageTitle','categories','teacher'));
     }
     public function store(CoursesRequest $request){
 
@@ -95,18 +103,27 @@ class CoursesController extends Controller{
     public function edit($id){
         $course = $this->courseRepository->find($id);
         $categories = $this->categoryRepository->getAll();
+        $teachers = $this->teacherRepository->getAll();
 
         if(!$course){
             abort(404);
         }
         $pageTitle = 'Chỉnh sửa thông tin';
 
-        return view('courses::edit',compact('course','pageTitle','categories'));
+        return view('courses::edit',compact('course','pageTitle','categories','teachers'));
         }
     
     public function update(CoursesRequest $request,$id){
 
         $data = $request->except('_token','categories');
+        
+        if (!$data['sale_price']) {
+            $data['sale_price'] = 0;
+        }
+
+        if (!$data['price']) {
+            $data['price'] = 0;
+        }
         $status = $this->courseRepository->update($id,$data);
         if($status){
             toastr()->success(__('courses::message.update.success'));

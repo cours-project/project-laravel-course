@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edufie - Online Courses Html Template</title>
-    <!--fivicon icon-->
-    <link rel="icon" href="assets/img/fevicon.png">
+    <title>{{ $pageTitle }} - VH Unicode</title>    <!--fivicon icon-->
+    <link rel="icon" href="{{ asset('clients/assets/img/fevicon.png') }}">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('clients/assets/css/animate.min.css') }}">
@@ -20,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('clients/assets/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('clients/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('clients/assets/css/responsive.css') }}">
-
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
@@ -59,18 +58,20 @@
     @yield('content')
 
     <!-- footer area start -->
-    @include('component.clients.footer')
+    {{-- @include('component.clients.footer') --}}
     <!-- footer area end -->    
 
     <!-- back-to-top end -->
     <div class="back-to-top">
         <span class="back-top"><i class="fas fa-angle-double-up"></i></span>
     </div>
+  
     
 
     <!-- all plugins here -->
     <script src="{{ asset('clients/assets/js/jquery.3.6.min.js') }}"></script>
-    <script src="{{ asset('clients/assets/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    {{-- <script src="{{ asset('clients/assets/js/bootstrap.min.js') }}"></script> --}}
     <script src="{{ asset('clients/assets/js/imageloded.min.js') }}"></script>
     <script src="{{ asset('clients/assets/js/counterup.js') }}"></script>
     <script src="{{ asset('clients/assets/js/waypoint.js') }}"></script>
@@ -84,6 +85,9 @@
     <script src="{{ asset('clients/assets/js/wow.min.js') }}"></script>
     <!-- main js  -->
     <script src="{{ asset('clients/assets/js/main.js') }}"></script>
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    @yield('script')
+
 </body>
 
 </html>

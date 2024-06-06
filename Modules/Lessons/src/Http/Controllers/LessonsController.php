@@ -20,8 +20,6 @@ class LessonsController extends Controller{
     protected $videoRepository;
     protected $documentRepository;
 
-
-
     public function __construct(
       CoursesRepositoryInterface $courseRepository  ,
       VideosRepositoryInterface $videoRepository , 
@@ -119,7 +117,7 @@ class LessonsController extends Controller{
 
 
       $this->lessonRepository->create([
-        'name' => $request->name,
+            'name' => $request->name,
             'slug' => $request->slug,
             'video_id' => $video_id,
             'course_id' => $id,
@@ -131,6 +129,9 @@ class LessonsController extends Controller{
             'description' => $request->description,
             'status' => $request->status,
       ]);
+
+      $this->handleDurations($id);
+
 
       toastr()->success(__('lessons::messages.create.success'));
       return redirect()->route('admin.lesson.index',$id);
@@ -186,17 +187,21 @@ class LessonsController extends Controller{
             'description' => $request->description,
             'status' => $request->status,
       ]);
+      
+      $this->handleDurations($request->course_id);
 
       toastr()->success(__('lessons::messages.update.success'));
       return redirect()->route('admin.lesson.index',$request->course_id);
 
     }
 
-    public function delete($id){
-        $this->lessonRepository->delete($id);
-
+    public function delete($lesson_id){
+      
+      $course_id = $this->lessonRepository->find($lesson_id)->pluck('course_id')->first();
+      $this->lessonRepository->delete($lesson_id);
+      $this->handleDurations($course_id);
         toastr()->success(__('lessons::messages.delete.success'));
-        return redirect()->route('admin.lesson.index',7);
+        return redirect()->route('admin.lesson.index',$course_id);
   
     }
 
@@ -221,7 +226,17 @@ class LessonsController extends Controller{
 
       return redirect()->route('admin.lesson.index',$id);
     }
-}
+} 
+    public function handleDurations($course_id){
+       $lessons = $this->lessonRepository->getAll()->where('course_id',$course_id);
+      // dd($lessons);      
+       $durations = $lessons->reduce(function ( $prev,  $item) {
+        return $prev + $item->durations;
+    }, 0);
+      $this->courseRepository->update($course_id,[
+        'durations' => $durations,
+      ]);
+    }
   
 }
   

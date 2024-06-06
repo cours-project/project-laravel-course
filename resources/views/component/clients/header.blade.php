@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="logo">
-                <a class="main-logo" href="home.html"><img src="{{ asset('clients/assets/img/logo.png') }}" alt="img"></a>
+                <a class="main-logo" href="{{ route('index') }}"><img src="{{ asset('clients/assets/img/logo.png') }}" alt="img"></a>
             </div>
             <div class="nav-right-part nav-right-part-mobile">
                 <ul>
