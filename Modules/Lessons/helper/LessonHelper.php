@@ -1,8 +1,9 @@
 <?php
 
 use Modules\Categories\src\Models\Category;
+use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 use Modules\Lessons\src\Models\Lesson;
-
+use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
 
 if (!function_exists('getLessons')) {
     function getLessons($lessons, $parent_id = 0, $char = '')
@@ -48,22 +49,21 @@ if (!function_exists('getTime')) {
 }
 
 if (!function_exists('getLessonsClient')) {
-    
-    function getLessonsClient($lessons, $parent_id = 0, $color = 78, $margin = '',$number = 1)
+
+
+    function getLessonsClient($lessons, $parent_id = 0, $color = 78, $margin = '', $number = 1)
     {
-        
+
         foreach ($lessons as $key => $lesson) {
-           
             if ($lesson->parent_id == $parent_id) {
-              
+
                 $rgb = 'rgb(' . $color . ',115,223)';
                 $is_trial = $lesson->is_trial == 1 ? '<p class="badge bg-info text-dark is_trial" data-bs-toggle="modal" data-bs-target="#myModal1" data-id=' . $lesson->id . ' style="display: inline-block">Học thử</p>' : '';
-                echo '
-                <li>
+                echo '<li>
                 <a  class="play-btn ' . $margin . '" href="#"><i class="fa fa-play"></i></a>
                 <span>
                     <div class="row" style="width:350px">
-                    <div class="col-9"> <p style="color: ' . $rgb . '" ">Bài:'.$number.' '. $lesson->name . '</p>  </div>
+                    <a class="col-9" href="/lesson/' . $lesson->slug . '"> <div > <p style="color: ' . $rgb . '" ">Bài:' . $number . ' ' . $lesson->name . '</p>  </div></a>
                     <div class="col-3"> ' . $is_trial . '</div>
                     </div>
                     <span>' . getTime($lesson->durations) . '</span> 
@@ -74,6 +74,14 @@ if (!function_exists('getLessonsClient')) {
                 unset($lessons[$key]);
                 getLessonsClient($lessons, $lesson->id, $color + 1000, 'ms-3', $number++);
             }
+        }
+    }
+
+    if (!function_exists('courseOfLesson')) {
+        function courseOfLesson($courseId)
+        {
+            $courseRepository = app(LessonsRepositoryInterface::class);
+            return $courseRepository->courseOfLesson($courseId);
         }
     }
 }

@@ -10,11 +10,15 @@ function deleteFileStorage($image)
     unlink(public_path($imageThumb));
 }
 if (!function_exists('getHours')) {
-    function getHours($seconds){
-      
-        $hours =round($seconds/3600);
-        $min = round(($seconds - ($hours*3600))/60);
-        return $hours.':'.$min.' phút';
-
+    function getHours($seconds){    
+        $hours = floor($seconds / 3600);
+        $min = floor(($seconds % 3600) / 60);
+        return $hours . ' giờ ' . $min . ' phút';
+    }
+    
+}
+if (!function_exists('queryActive')) {
+     function queryActive($query){
+        return $query->where('status',1);
     }
 }

@@ -30,7 +30,7 @@ class ClientCourseController extends Controller{
     public function detail($slug){
       $pageTitle = "Chi tiết khóa học";
       $course = $this->courseRepository->courseDetail($slug)->first();
-
+      // dd($course->lessons);
       return view('courses::clients.detail',compact('pageTitle','course'));
    }
    

@@ -22,7 +22,7 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
     // /CLIENTS
     public function getCourses($limit)
     {
-        return $this->model->latest()->paginate($limit);
+        return $this->model->where('status',1)->latest()->paginate($limit);
     }
 
     // public function lessons(){
@@ -30,8 +30,12 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
     // }
     
     public function courseDetail($slug){
-        return $this->model->where('slug',$slug)->get();
+        return $this->model->where('slug',$slug);
+    }
+    public function courseOfLesson($courseId){
+        return $this->model->with('teacher','lessons')->where('id',$courseId);
     }
 }
+ 
 
 ?>

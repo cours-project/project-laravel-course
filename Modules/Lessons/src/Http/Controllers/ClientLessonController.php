@@ -24,11 +24,32 @@ class ClientLessonController extends Controller{
     public function index($slug){
        $pageTitle = "Khóa học";
        $lesson = $this->lessonRepository->findBySlug($slug)->get()->first();
-     
-       return view('lessons::clients.index',compact('pageTitle','lesson'));
+       $course = $this->courseRepository->courseOfLesson($lesson->course_id)->first();
+       $lessons = $this->lessonRepository->getLessonByPosition($course)->where('status',1)->get();
+      //  dd($lessons);
+       $currentLesson = null;
+       $document = $lesson->document()->get()->pluck('url')->first() ?: null;
+      $index = 1;
+      foreach ($lessons as $key => $item) {
+        if($lesson->id == $item->id){
+          $currentLesson = $key;
+          break;
+        }
+      }
+      $nextLesson = null;
+      $prevLesson = null;
+      if(isset($lessons[$currentLesson +1])){
+        $nextLesson = $lessons[$currentLesson + 1];
+      }
+      if(isset($lessons[$currentLesson -1])){
+        $prevLesson = $lessons[$currentLesson - 1];
+      } 
+
+      
+      return view('lessons::clients.index',compact('index','pageTitle','lesson','course','nextLesson','prevLesson','document'));
     }
-
+  }
+    
   
 
   
-}

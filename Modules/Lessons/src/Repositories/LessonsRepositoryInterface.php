@@ -7,6 +7,8 @@ interface LessonsRepositoryInterface extends RepositoryInterface{
     public function getPosition($courseId);
     public function getLessons($courseId);
     public function getModuleByPosition($course);
+    public function getLessonByPosition($course);
     public function getTrialVideo($lesson_id);
     public function findBySlug($slug);
+    function courseOfLesson($courseId);
 }

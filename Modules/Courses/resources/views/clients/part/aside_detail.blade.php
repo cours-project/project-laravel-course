@@ -32,6 +32,7 @@
         <ul>
             <li>Tên khóa học: <span>{{ $course->name }}</span></li>
             <li>Danh mục: <span> <a href="">{{ getCategoriesOfCourse($course->id) }}</a></span></li>
+            {{-- {{ dd($course->durations) }} --}}
             <li>Số giờ học: <span> {{ getHours($course->durations) }}</span></li>
             <li>Số chương: <span>  {{ (string)countModule($course)}} chương</span></li>
             <li>Số bài học: <span>  {{ (string)countLesson($course)}} bài</span></li>

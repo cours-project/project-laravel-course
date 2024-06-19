@@ -60,7 +60,7 @@ if (!function_exists('countModule')) {
 }
 if (!function_exists('countLesson')) {
     function countLesson($course){
-        $countLesson = $course->lessons->whereNotNull('parent_id')->count();
+        $countLesson = $course->lessons()->whereNotNull('parent_id')->get()->count();
         return $countLesson ;
     }
 }

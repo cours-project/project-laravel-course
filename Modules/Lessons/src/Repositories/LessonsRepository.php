@@ -20,7 +20,13 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
     }
 
     public function getModuleByPosition($course){
-        return $course->lessons()->whereNull('parent_id')->orderBy('position', 'asc')->get();
+        return $course->lessons()->whereNull('parent_id')->orderBy('position', 'asc')->active()->get();
+        
+    }
+
+    public function getLessonByPosition($course){
+        return $course->lessons()->whereNotNull('parent_id')->active();
+       
     }
 
     public function getTrialVideo($lesson_id){
@@ -28,7 +34,11 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
     }
     
     public function findBySlug($slug){
-        return $this->model->with('course','video')->where('slug',$slug);
+        return $this->model->with('video')->where('slug',$slug);
+    }
+   
+    function courseOfLesson($courseId){
+        return $this->model->where('course_id',$courseId)->get();
     }
 
 }

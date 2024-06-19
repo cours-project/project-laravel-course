@@ -15,4 +15,5 @@ class ActiveScope implements Scope
     {
         $builder->where('status', 1) ;
     }
+    
 }

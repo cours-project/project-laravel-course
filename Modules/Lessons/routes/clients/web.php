@@ -1,14 +1,11 @@
+
 <?php 
 use Illuminate\Support\Facades\Route;
-use Modules\Courses\src\Http\Controllers\ClientCourseController;
-    
-Route::prefix('course')->name('course.')->group(function(){
+use Modules\Lessons\src\Http\Controllers\ClientLessonController;
 
-    Route::get('/',[ClientCourseController::class , 'index'])->name('index');
-    Route::get('/detail/{slug}',[ClientCourseController::class , 'detail'])->name('detail');
+Route::prefix('lesson')->name('lesson.')->group(function(){
 
-    route::prefix('data')->name('data.')->group(function(){
-        Route::get('/trial/{lesson_id}',[ClientCourseController::class , 'getTrialVideo'])->name('trial');
-    });
+    Route::get('/{slug}',[ClientLessonController::class , 'index'])->name('index');
+ 
     });
 ?>
