@@ -1,8 +1,9 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+@import"./clients/animate.min";
+@import "./clients/bootstrap.min";
+@import "./clients/magnific.min";
+@import "./clients/nice-select.min";
+@import "./clients/owl.min";
+@import "./clients/slick-slide.min";
+@import "./clients/fontawesome.min";
+@import "./clients/style";
+@import "./clients/responsive";

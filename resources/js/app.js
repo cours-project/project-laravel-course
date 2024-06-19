@@ -1,7 +1,15 @@
-import './bootstrap';
-
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+import "./clients/jquery.3.6.min.js"   
+// import "./clients/bootstrap.min.js"
+// import "./clients/imageloded.min.js"
+// import "./clients/counterup.js"
+// import "./clients/waypoint.js"
+// import "./clients/magnific.min.js"
+// import "./clients/isotope.pkgd.min.js"
+// import "./clients/nice-select.min.js"
+// import "./clients/fontawesome.min.js"
+// import "./clients/ripple.js"
+// import "./clients/owl.min.js"
+// import "./clients/slick-slider.min.js"
+// import "./clients/wow.min.js"
+// import "./clients/main.js"
+// console.log('sidufgius')
