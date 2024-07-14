@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'login.success' => 'Đăng nhập thành công',
     'create.success' => 'Thêm thành công',
     'create.failure' => 'Thêm không thành công',
     'update.success' => 'Cập nhật thành công',

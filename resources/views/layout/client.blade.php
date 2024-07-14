@@ -6,28 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $pageTitle }} - VH Unicode</title>    <!--fivicon icon-->
     <link rel="icon" href="{{ asset('clients/assets/img/fevicon.png') }}">
-
-    <!-- Stylesheet -->
-    {{-- <link rel="stylesheet" href="{{ asset('clients/assets/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/magnific.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/nice-select.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/owl.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/slick-slide.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('clients/assets/css/responsive.css') }}"> --}}
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
     @vite(['resources/sass/app.scss'])
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
 
 </head>
 <body class='sc5'>
     <!-- preloader area start -->
-    <div class="preloader" id="preloader">
+    {{-- <div class="preloader" id="preloader">
         <div class="preloader-inner">
             <div id="wave1">
             </div>
@@ -48,7 +37,7 @@
             </div>
             <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
         </form>
-    </div>
+    </div> --}}
     <!-- //. search Popup -->
 
     <!-- navbar start -->
@@ -69,10 +58,10 @@
     
 
     <!-- all plugins here -->
-
+    
     <script src="{{ asset('clients/assets/js/jquery.3.6.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="{{ asset('clients/assets/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('clients/assets/js/bootstrap.min.js') }}"></script> --}}
     <script src="{{ asset('clients/assets/js/imageloded.min.js') }}"></script>
     <script src="{{ asset('clients/assets/js/counterup.js') }}"></script>
     <script src="{{ asset('clients/assets/js/waypoint.js') }}"></script>
@@ -84,9 +73,10 @@
     <script src="{{ asset('clients/assets/js/owl.min.js') }}"></script>
     <script src="{{ asset('clients/assets/js/slick-slider.min.js') }}"></script>
     <script src="{{ asset('clients/assets/js/wow.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- main js  -->
-    <script src="{{ asset('clients/assets/js/main.js') }}"></script>
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <script src="{{ asset('clients/assets/js/main.js') }}"></script>
 
     @vite(['resources/js/app.js'])
 

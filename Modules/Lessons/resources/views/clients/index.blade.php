@@ -15,10 +15,10 @@
                     <div class="single-course-wrap mb-0">
                         <div class="thumb"
                             style="position: relative;
-                    width: 850px;
-                    height: 390px;">
+                                width: 850px;
+                                height: 390px;">
                             <video id="my-video" class="video-js" controls preload="auto" width="100%" height="100%"
-                                poster="{{ $course->thumbnail }}" data-setup="{}">
+                                poster="" data-setup="{}">
                                 <source src="{{ $lesson->video->url }}" type="video/mp4" />
                                 Trình duyệt không hỗ trợ
                             </video>
@@ -69,8 +69,8 @@
                         </div>
                     </div>
 
-                @include('lessons::clients.part.tab')
-              
+                    @include('lessons::clients.part.tab')
+
 
                 </div>
                 @include('lessons::clients.part.aside')

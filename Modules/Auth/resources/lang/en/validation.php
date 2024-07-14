@@ -6,6 +6,7 @@ return [
     'email' => ':attribute không đúng định dạng email',
     'unique' => ':attribute đã tồn tại trên hệ thống',
     'same' => 'Mật khẩu nhập lại không khớp',
+    'min' => 'Mật khẩu quá ngắn',
     'attributes' => [
         'name' => 'Tên',
         'phone' => 'Số điện thoại',

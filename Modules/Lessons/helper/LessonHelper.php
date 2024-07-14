@@ -19,8 +19,7 @@ if (!function_exists('getLessons')) {
         } else {
             $module = null;
         }
-
-
+        
         foreach ($lessons as $key => $lesson) {
             if ($lesson->parent_id == $parent_id) {
                 $selected =

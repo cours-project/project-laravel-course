@@ -1,4 +1,5 @@
-import "./clients/jquery.3.6.min.js"   
+
+import "./clients/account.js"   
 // import "./clients/bootstrap.min.js"
 // import "./clients/imageloded.min.js"
 // import "./clients/counterup.js"

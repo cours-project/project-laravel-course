@@ -9,6 +9,15 @@ function deleteFileStorage($image)
     unlink(public_path($image));
     unlink(public_path($imageThumb));
 }
+
+if (!function_exists('activeMenu')) {
+    function activeMenu($name)
+{
+    return request()->is(trim(route($name, [], false), '/'));
+}
+}
+
+
 if (!function_exists('getHours')) {
     function getHours($seconds){    
         $hours = floor($seconds / 3600);

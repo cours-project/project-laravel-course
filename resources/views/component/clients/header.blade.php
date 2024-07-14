@@ -45,9 +45,19 @@
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="instructor.html">Become an Instructor</a>
-                    </li>
+                    @if (Auth::guard('students')->user()) 
+                            <li class="menu-item-has-children">
+                                <a href="instructor.html">Xin chào {{ Auth::guard('students')->user()->name }}</a>
+                                <ul class="sub-menu">
+                                    <li><a href="{{ route('account.index') }}">Tài khoản</a></li>
+                                    <li><a class="btn-logout">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('clients.login') }}">Đăng nhập</a>
+                            </li>
+                        @endif
                 </ul>
             </div>
             <div class="nav-right-part nav-right-part-desktop">

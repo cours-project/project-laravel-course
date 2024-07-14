@@ -1,3 +1,5 @@
+@import url(https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css);
+
 @import"./clients/animate.min";
 @import "./clients/bootstrap.min";
 @import "./clients/magnific.min";
@@ -7,3 +9,6 @@
 @import "./clients/fontawesome.min";
 @import "./clients/style";
 @import "./clients/responsive";
+@import "./clients/_account.scss";
+
+@import url(https://vjs.zencdn.net/8.10.0/video-js.css);

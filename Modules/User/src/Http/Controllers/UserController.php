@@ -19,7 +19,6 @@ class UserController extends Controller{
 
     public function index(){
         $pageTitle = "Danh sách người dùng";
-        $users = $this->userRepository->checkPassword('111',1);
         return view('user::lists',compact('pageTitle'));
     }
 
