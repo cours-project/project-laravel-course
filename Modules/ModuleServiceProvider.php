@@ -18,6 +18,10 @@ use Modules\Documents\src\Repositories\DocumentsRepository;
 use Modules\Documents\src\Repositories\DocumentsRepositoryInterface;
 use Modules\Lessons\src\Repositories\LessonsRepository;
 use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
+use Modules\Orders\src\Repositories\OrdersRepository;
+use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
+use Modules\Orders\src\Repositories\OrdersStatusRepository;
+use Modules\Orders\src\Repositories\OrdersStatusRepositoryInterface;
 use Modules\Students\src\Repositories\StudentsRepository;
 use Modules\Students\src\Repositories\StudentsRepositoryInterface;
 use Modules\Teacher\src\Repositories\TeacherRepository;
@@ -75,6 +79,14 @@ class ModuleServiceProvider extends ServiceProvider{
          $this->app->singleton(
             StudentsRepositoryInterface::class,
             StudentsRepository::class 
+         );
+         $this->app->singleton(
+            OrdersRepositoryInterface::class,
+            OrdersRepository::class
+         );
+         $this->app->singleton(
+            OrdersStatusRepositoryInterface::class,
+            OrdersStatusRepository::class
          );
     }
 

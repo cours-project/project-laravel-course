@@ -15,8 +15,8 @@
                     <div class="col-lg-6">
                         <input class="filter-keyword ms-3" name="keyword" type="text" placeholder="Tìm kiếm ..." value="{{ request()->keyword }}">
                     </div>
-                    <div class="col-lg-2">
-                    <button type="submit" class="filter-btn">Gửi</button>
+                    <div class="col-lg-2">filter-btn
+                    <button type="submit" class="">Gửi</button>
                     </div>
                 </div>
                 </form>

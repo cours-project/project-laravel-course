@@ -1,6 +1,9 @@
 $(document).ready(function() {
     $('.filter_teacherId').select2();
 });
+$('.datepicker-1').datepicker();
+$('.datepicker-2').datepicker();
+
 const profileBtn = document.querySelector(".js-profileBtn");
 
 if (profileBtn) {

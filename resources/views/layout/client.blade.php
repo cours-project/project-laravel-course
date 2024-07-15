@@ -77,7 +77,7 @@
     <!-- main js  -->
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script src="{{ asset('clients/assets/js/main.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @vite(['resources/js/app.js'])
 
     @yield('script')
